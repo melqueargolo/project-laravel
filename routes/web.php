@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\testeController;
+use App\Http\Controllers\TodoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,7 +27,7 @@ Route::prefix('dashboard')
     ->group(function(){
     Route::get('/sobrenos', 'teste');
     Route::get('/sucesso/empresa/cargo/presidente', 'testeSucesso')->name('sucesso');
-
+    Route::get('/pesquisa', [Controller::class, 'pesquisa']);
 });
 
 //Route::get('/sobrenos', [Controller::class, 'teste']);
@@ -35,6 +36,13 @@ Route::prefix('dashboard')
 //Route::get('/user/{id}', [Controller::class, 'usuario']);
 Route::get('/user/{id?}', [Controller::class, 'usuario']);
 Route::get('/teste', testeController::class);//metodo invoke
+Route::get('/todo', [TodoController::class, 'dados']);//metodo invoke
+Route::get('/relacionamento', [TodoController::class, 'pegarRelacionamento']);
+
+
+
+
+
 
 Route::fallback([Controller::class, 'pagina404']);
 

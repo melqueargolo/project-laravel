@@ -41,4 +41,9 @@ class Controller extends BaseController
    {
         return redirect()->route('sucesso');
    }
+
+   public function pesquisa()
+   {
+     return 'Essa página não foi encontrada!';
+   }
 }

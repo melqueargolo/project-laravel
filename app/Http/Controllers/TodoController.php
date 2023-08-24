@@ -4,9 +4,42 @@ namespace App\Http\Controllers;
 
 use App\Models\Todo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TodoController extends Controller
 {
+
+    public function dados(Request $request)
+    {
+        //$dados = DB::table('todos')->get();
+        //$dados = Todo::all();
+        //$dados = Todo::where('votos', '>=', 5)
+        $dados = Todo::select('nome', 'votos')
+        ->orderBy('nome', 'desc')
+        ->get();
+
+        \dd($dados);
+        $users = '';
+        foreach ($dados as $dado) {
+            $users .= "{$dado->nome} <br>";
+        }
+        return "Os usuarios cadastrados são: <br> {$users}";
+    }
+ 
+    /**
+     * pegarRelacionamento
+     *
+     * @return void
+     */
+    public function pegarRelacionamento(Request $request)
+    {
+        $query = Todo::select('todos.*','users.*')
+        ->join('users', 'todos.user_id', '=', 'users.id')
+        ->get();
+        \dd($query);
+    }
+
+
     /**
      * Display a listing of the resource.
      */
