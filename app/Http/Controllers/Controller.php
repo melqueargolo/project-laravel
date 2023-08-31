@@ -42,8 +42,8 @@ class Controller extends BaseController
         return redirect()->route('sucesso');
    }
 
-   public function pesquisa()
+   public function pesquisa(Request $request)
    {
-     return 'Essa página não foi encontrada!';
+     return \view('pesquisa');
    }
 }

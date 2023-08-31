@@ -11,11 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('nomes', function (Blueprint $table) {
+        Schema::create('todos', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
-            $table->dateTime('data');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->softDeletes();
             $table->timestamps();
+        });
+        Schema::table('todos', function (Blueprint $table) {
+            $table->integer('votos')->after('nome')->nullable();
+           
         });
     }
 
@@ -24,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('nomes');
+        Schema::dropIfExists('todos');
     }
 };
