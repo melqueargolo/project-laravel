@@ -41,7 +41,7 @@ Route::get('/sucesso/empresa/cargo/presidente', [Controller::class, 'testeSucess
 Route::get('/user/{id}', [Controller::class, 'usuario']);
 Route::get('/user/{id?}', [Controller::class, 'usuario']);
 Route::get('/teste', testeController::class);//metodo invoke
-Route::get('/todo', [TodoController::class, 'dados']);//metodo invoke
+Route::get('/todo', [TodoController::class, 'dados']);
 Route::get('/relacionamento', [TodoController::class, 'pegarRelacionamento']);
 Route::get('/inserir', [TodoController::class, 'inserir'])->name('iserir');
 Route::get('/update', [TodoController::class, 'update'])->name('update');

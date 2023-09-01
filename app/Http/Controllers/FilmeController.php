@@ -12,7 +12,7 @@ class FilmeController extends Controller
      */
     public function index()
     {
-        //
+        return view('filmes');
     }
 
     /**
@@ -28,7 +28,13 @@ class FilmeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $categorias = $request->categoria;
+        $filmes = Filme::whereIn('categoria', $categorias)->get();
+        $html = 'Os filmes que você selecionou são: ';
+        foreach ($filmes as $filme){
+        $html .= $filme->nome.'';
+        }
+    echo $html;
     }
 
     /**
